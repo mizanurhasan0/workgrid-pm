@@ -1,0 +1,947 @@
+/* Self-hosted Inter (variable, wght axis) from npm. No render-blocking third-party CSS. */
+@import "@fontsource-variable/inter/wght.css";
+@import "tailwindcss";
+
+/* Tailwind v4: dark mode is the .dark class on <html> (set before paint by the script in index.html, managed by Components/Theme). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ==================================================================
+ * PALETTE (light / dark). Layered elevation: app < panel < card < raised.
+ *
+ *  token (utility)                 light      dark       use
+ *  --app     bg-app                #ffffff    #0b1020    page background
+ *  --panel   bg-panel / surface-alt #f8fafc   #10172a    sidebar, toolbars, wells
+ *  --card    bg-card / surface     #ffffff    #151d33    cards, inputs, table rows
+ *  --raised  bg-raised / surface-raised #fff  #1b2540    modals, popovers, menus, toasts
+ *  --text    text-text             #0f172a    #e6eaf2    body text
+ *  --text-strong text-strong       #020617    #f8fafc    headings, emphasis
+ *  --text-muted text-text-muted    #475569    #9aa6bc    secondary text
+ *  --border  border-border         #e2e8f0    white 10%  dividers, card outlines
+ *  --border-strong border-border-strong #718096 #66749a  form controls (3:1)
+ *  --brand   text-brand            #5b33e0    #b49cff    brand text/icons
+ *  --brand-solid bg-brand-solid    #6239ed    #7656f7    primary buttons (+ text-on-brand #fff)
+ *  --danger/--success/--warning/--info (+ -soft backgrounds) status text and chips
+ *  --focus-ring                    #6239ed    #a78bfa    keyboard focus
+ *
+ *  Hover / active / selected: --hover, --active, --selected (overlays, work on any layer)
+ *  Utilities: bg-app bg-panel bg-card bg-raised border-subtle shadow-elevated text-strong
+ *  chip chip-success chip-warning chip-danger chip-info chip-neutral chip-brand
+ *  hover-surface, selected-surface, skeleton, dim-dark (images), z-nav z-dropdown z-drawer z-modal z-popover z-tooltip z-toast
+ *
+ *  Every text/background pair above is >= 4.5:1 (UI borders and focus >= 3:1) in both themes.
+ *  Legacy tokens (bg-info, bg-bgDark, bg-darkSideBar, text-subText, text-darkSubInfo, border-borderColor,
+ *  bg-secondary, ...) keep their names and are re-pointed in .dark so old markup upgrades automatically.
+ * ================================================================== */
+:root {
+  color-scheme: light;
+  --app: #ffffff;
+  --panel: #f8fafc;
+  --card: #ffffff;
+  --raised: #ffffff;
+  --surface: var(--card);
+  --surface-alt: var(--panel);
+  --surface-raised: var(--raised);
+  --text: #0f172a;
+  --text-strong: #020617;
+  --text-muted: #475569;
+  --border: #e2e8f0;
+  --border-strong: #718096;
+  --brand: #5b33e0;
+  --brand-solid: #6239ed;
+  --brand-solid-hover: #5128d8;
+  --brand-soft: #ede9fe;
+  --on-brand: #ffffff;
+  --danger: #b42318;
+  --danger-solid: #b42318;
+  --danger-solid-hover: #9a1d14;
+  --danger-soft: #fee4e2;
+  --success: #166534;
+  --success-soft: #dcfce7;
+  --warning: #92400e;
+  --warning-soft: #fef3c7;
+  --info: #1d4ed8;
+  --info-soft: #dbeafe;
+  --neutral-soft: #eef2f6;
+  --focus-ring: #6239ed;
+  --scrim: rgb(2 6 23 / 0.55);
+  --hover: rgb(15 23 42 / 0.05);
+  --active: rgb(15 23 42 / 0.09);
+  --selected: rgb(98 57 237 / 0.1);
+  --disabled-fg: #94a3b8;
+  --tooltip-bg: #0f172a;
+  --tooltip-fg: #f8fafc;
+  --skeleton-a: #e2e8f0;
+  --skeleton-b: #f1f5f9;
+  --code-bg: #f1f5f9;
+  --code-fg: #0f172a;
+  --scrollbar: #94a3b8;
+  --scrollbar-hover: #64748b;
+  --shadow-color: 15 23 42;
+
+  /* Layout tokens */
+  --gutter: 1rem;
+  --vh-full: 100vh;
+  --app-h: var(--vh-full);
+  --tabbar-h: 0px;
+  --rail-w: 4rem;
+
+  /* z-index scale: content < sticky < nav < dropdown < drawer < scrim < modal < popover < tooltip < toast < skip-link */
+  --z-raised: 1;
+  --z-sticky: 10;
+  --z-nav: 40;
+  --z-dropdown: 45;
+  --z-drawer: 50;
+  --z-scrim: 900;
+  --z-modal: 999;
+  --z-popover: 1000;
+  --z-tooltip: 1100;
+  --z-toast: 9999;
+  --z-skip: 10000;
+}
+
+.dark {
+  color-scheme: dark;
+  --app: #0b1020;
+  --panel: #10172a;
+  --card: #151d33;
+  --raised: #1b2540;
+  --text: #e6eaf2;
+  --text-strong: #f8fafc;
+  --text-muted: #9aa6bc;
+  --border: rgb(255 255 255 / 0.1);
+  --border-strong: #66749a;
+  --brand: #b49cff;
+  --brand-solid: #7656f7;
+  --brand-solid-hover: #6a49ee;
+  --brand-soft: rgb(167 139 250 / 0.18);
+  --on-brand: #ffffff;
+  --danger: #ff8a8a;
+  --danger-solid: #dc2626;
+  --danger-solid-hover: #c81e1e;
+  --danger-soft: rgb(248 113 113 / 0.16);
+  --success: #4ade80;
+  --success-soft: rgb(74 222 128 / 0.14);
+  --warning: #fbbf24;
+  --warning-soft: rgb(251 191 36 / 0.14);
+  --info: #7db4ff;
+  --info-soft: rgb(125 180 255 / 0.16);
+  --neutral-soft: rgb(255 255 255 / 0.08);
+  --focus-ring: #a78bfa;
+  --scrim: rgb(3 6 18 / 0.72);
+  --hover: rgb(255 255 255 / 0.06);
+  --active: rgb(255 255 255 / 0.1);
+  --selected: rgb(167 139 250 / 0.16);
+  --disabled-fg: #667391;
+  --tooltip-bg: #2a3558;
+  --tooltip-fg: #f8fafc;
+  --skeleton-a: #1b2540;
+  --skeleton-b: #26325a;
+  --code-bg: #0f1730;
+  --code-fg: #e6eaf2;
+  --scrollbar: #3b4766;
+  --scrollbar-hover: #55638a;
+  --shadow-color: 0 0 0;
+
+  /* Legacy tokens re-pointed so existing markup (bg-bgDark, dark:text-info, ...) moves to the new palette. */
+  --color-primary: #0b1020;
+  --color-info: #e6eaf2;
+  --color-bgDark: #0b1020;
+  --color-darkSideBar: #10172a;
+  --color-hoverDarkColor: #1b2540;
+  --color-bgDarkSkel: #1b2540;
+  --color-bgSkeleton: #1f2a4a;
+  --color-darkSubInfo: #9aa6bc;
+  --color-thirdInfo: #9aa6bc;
+  --color-subText: #c3ccdc;
+  --color-darkSubText: #9aa6bc;
+  --color-iconBorder: #9aa6bc;
+  --color-darkIconBorder: #9aa6bc;
+  --color-borderColor: rgb(255 255 255 / 0.1);
+  --color-CBlue: #4ade80;
+  --color-fillLogo: #c3ccdc;
+}
+
+@supports (height: 100dvh) {
+  :root {
+    --vh-full: 100dvh;
+  }
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --gutter: 1.5rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --gutter: 2rem;
+  }
+}
+
+/* Brand tokens carried over from tailwind.config.js (Tailwind v3). Never rename or remove: other code uses them. */
+@theme {
+  --color-primary: #000316;
+  --color-secondary: #6239ED;
+  --color-info: #FFFFFF;
+  --color-subInfo: #0F172A;
+  --color-thirdInfo: #64748B;
+  --color-CBlue: #15803D;
+  --color-borderColor: #E2E8F0;
+  --color-iconBorder: #475569;
+  --color-subText: #475569;
+  --color-darkSubText: #64748B;
+  --color-darkIconBorder: #64748B;
+  --color-bgSecondary: #F8FAFC;
+  --color-hoverColor: #F1F5F9;
+  --color-darkSubInfo: #94A3B8;
+  --color-hoverDarkColor: #212121;
+  --color-bgDark: #000316;
+  --color-darkSideBar: #0F172A;
+  --color-bgSkeleton: #D1D2D3;
+  --color-bgDarkSkel: #111111;
+  --color-fillLogo: #2A2E34;
+  --text-cLarge: 1.125em;
+  --text-cMd: 0.875em;
+  --text-cSm: 0.75em;
+
+  /* Font */
+  --font-sans: 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans Bengali', 'Kohinoor Bangla', 'Nirmala UI', 'Helvetica Neue', Arial, sans-serif;
+
+  /* Radius scale (control = inputs/buttons, card, sheet = modals/drawers) */
+  --radius-control: 0.5rem;
+  --radius-card: 0.75rem;
+  --radius-sheet: 1rem;
+
+  /* Shadow scale (retinted per theme through --shadow-color) */
+  --shadow-card: 0 1px 2px rgb(var(--shadow-color) / 0.06), 0 1px 3px rgb(var(--shadow-color) / 0.1);
+  --shadow-pop: 0 4px 6px -1px rgb(var(--shadow-color) / 0.12), 0 10px 24px -4px rgb(var(--shadow-color) / 0.16);
+  --shadow-sheet: 0 20px 40px -8px rgb(var(--shadow-color) / 0.35);
+  --shadow-elevated: 0 0 0 1px var(--border), 0 12px 32px -8px rgb(var(--shadow-color) / 0.28), 0 2px 6px rgb(var(--shadow-color) / 0.12);
+
+  /* Control heights: h-control-sm / md / lg = 32 / 40 / 48px */
+  --spacing-control-sm: 2rem;
+  --spacing-control-md: 2.5rem;
+  --spacing-control-lg: 3rem;
+  --spacing-tap: 2.75rem;
+  --spacing-gutter: var(--gutter);
+  --spacing-tabbar: var(--tabbar-h);
+  --spacing-rail: var(--rail-w);
+}
+
+/* Semantic colors resolve through the variables above so they flip with the theme. */
+@theme inline {
+  --color-app: var(--app);
+  --color-panel: var(--panel);
+  --color-card: var(--card);
+  --color-raised: var(--raised);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-surface-raised: var(--surface-raised);
+  --color-text: var(--text);
+  --color-strong: var(--text-strong);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-solid: var(--brand-solid);
+  --color-brand-solid-hover: var(--brand-solid-hover);
+  --color-on-brand: var(--on-brand);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-danger-solid: var(--danger-solid);
+  --color-danger-solid-hover: var(--danger-solid-hover);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-info-text: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-neutral-soft: var(--neutral-soft);
+  --color-focus-ring: var(--focus-ring);
+  --color-scrim: var(--scrim);
+  --color-hover: var(--hover);
+  --color-active: var(--active);
+  --color-selected: var(--selected);
+}
+
+/* Surfaces and elevation helpers */
+@utility border-subtle { border-color: var(--border); }
+@utility shadow-elevated { box-shadow: var(--shadow-elevated); }
+@utility hover-surface {
+  &:hover { background-color: var(--hover); }
+  &:active { background-color: var(--active); }
+}
+@utility selected-surface { background-color: var(--selected); }
+
+/* Soft status chips: <span class="chip chip-success">Done</span> */
+@utility chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  white-space: nowrap;
+  background-color: var(--neutral-soft);
+  color: var(--text-muted);
+}
+@utility chip-success { background-color: var(--success-soft); color: var(--success); }
+@utility chip-warning { background-color: var(--warning-soft); color: var(--warning); }
+@utility chip-danger { background-color: var(--danger-soft); color: var(--danger); }
+@utility chip-info { background-color: var(--info-soft); color: var(--info); }
+@utility chip-brand { background-color: var(--brand-soft); color: var(--brand); }
+@utility chip-neutral { background-color: var(--neutral-soft); color: var(--text-muted); }
+
+/* z-index scale */
+@utility z-nav { z-index: var(--z-nav); }
+@utility z-dropdown { z-index: var(--z-dropdown); }
+@utility z-drawer { z-index: var(--z-drawer); }
+@utility z-scrim { z-index: var(--z-scrim); }
+@utility z-modal { z-index: var(--z-modal); }
+@utility z-popover { z-index: var(--z-popover); }
+@utility z-tooltip { z-index: var(--z-tooltip); }
+@utility z-toast { z-index: var(--z-toast); }
+
+/* Skeleton shimmer, themed */
+@utility skeleton {
+  background-color: var(--skeleton-a);
+  background-image: linear-gradient(90deg, transparent 0%, var(--skeleton-b) 50%, transparent 100%);
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+  border-radius: var(--radius-control);
+}
+
+@keyframes skeleton-shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+/* Opt-in: images a little calmer on dark surfaces. */
+.dark .dim-dark {
+  filter: brightness(0.88) contrast(1.02);
+}
+
+/* Legacy arbitrary dark colours still in markup map onto the palette (unlayered, so they win). */
+.dark .dark\:bg-\[\#1E293B\] { background-color: var(--raised); }
+.dark .dark\:border-\[\#334155\] { border-color: var(--border-strong); }
+.dark .dark\:border-b-\[\#18212E\] { border-bottom-color: var(--border); }
+.dark .dark\:bg-\[\#171433\] { background-color: var(--card); }
+
+/* h-screen / min-h-screen follow the real visible height (dvh) and shrink for the mobile tab bar inside the dashboard shell. */
+@utility h-screen {
+  height: var(--app-h);
+}
+
+@utility min-h-screen {
+  min-height: var(--app-h);
+}
+
+@utility max-h-screen {
+  max-height: var(--app-h);
+}
+
+/* Page padding that grows with the viewport: 16px / 24px / 32px. */
+@utility page-gutter {
+  padding-inline: var(--gutter);
+}
+
+@utility pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+@utility pt-safe {
+  padding-top: env(safe-area-inset-top);
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility text-pretty {
+  text-wrap: pretty;
+}
+
+/* Visually hidden but available to screen readers. */
+@utility sr-only-focusable {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@layer base {
+  html {
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    background-color: var(--app);
+  }
+
+  body {
+    margin: 0;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.5;
+    font-optical-sizing: auto;
+    font-feature-settings: 'cv11', 'ss03';
+    color: var(--text);
+    background-color: var(--app);
+    min-height: 100vh;
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  ul,
+  ol {
+    list-style: revert;
+  }
+
+  /* Headings live in the base layer so Tailwind text-* utilities can still override them. */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+  }
+
+  h1 {
+    font-size: clamp(1.75rem, 1.5rem + 1.1vw, 2.25rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    font-size: clamp(1.375rem, 1.25rem + 0.6vw, 1.75rem);
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 1.2rem + 0.2vw, 1.375rem);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  h4 {
+    font-size: 1.125rem;
+    line-height: 1.4;
+  }
+
+  h5 {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  h6 {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  img,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
+  }
+
+  ::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--brand-solid) 35%, transparent);
+    color: inherit;
+  }
+
+  /* Touch devices: comfortable hit area and no 300ms/double-tap zoom delay on controls. */
+  button,
+  [role='button'],
+  a,
+  input,
+  select,
+  textarea,
+  summary {
+    touch-action: manipulation;
+  }
+
+  /* 16px inputs prevent iOS Safari zooming the page on focus. */
+  @media (pointer: coarse) {
+    input:not([type='checkbox'], [type='radio'], [type='range'], [type='file']),
+    select,
+    textarea {
+      font-size: max(1rem, 16px);
+    }
+  }
+}
+
+/* Dark mode brand text: the legacy secondary violet is 3.2:1 on near-black, so text uses the lighter brand tone. */
+.dark .text-secondary:not([class*='dark:text-']),
+.dark .hover\:text-secondary:hover:not([class*='dark:text-']) {
+  color: var(--brand);
+}
+
+/* Overlays that are position:fixed are measured against the full screen, not the shell content area. */
+.fixed {
+  --app-h: var(--vh-full);
+  --tabbar-h: 0px;
+}
+
+/* Keyboard focus: one consistent brand ring everywhere (also overrides outline-none on controls). */
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Mouse focus on non-text controls stays quiet. */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.skip-link {
+  position: fixed;
+  left: 0.5rem;
+  top: 0.5rem;
+  z-index: var(--z-skip);
+  transform: translateY(-200%);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-control);
+  background: var(--brand-solid);
+  color: var(--on-brand);
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Progress indicators keep moving, slowly: they convey that work is happening. */
+  .animate-spin {
+    animation: spin 1.5s linear infinite !important;
+  }
+
+  .dot-pulse,
+  .dot-pulse::before,
+  .dot-pulse::after {
+    animation-duration: 2s !important;
+    animation-iteration-count: infinite !important;
+  }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* Chromium/WebKit autofill: themed fill so it never flashes white/yellow in dark mode. */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  box-shadow: inset 0 0 0 100px var(--surface-raised) !important;
+  -webkit-text-fill-color: var(--text);
+  caret-color: var(--text);
+  transition: background-color 9999s ease-out;
+}
+
+/* Scrollbars: thin, visible in light and dark. Standard properties (Chrome 121+, Firefox, Safari 18.2+). */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar) transparent;
+}
+
+*:hover {
+  scrollbar-color: var(--scrollbar-hover) transparent;
+}
+
+/* Hidden scrollbars (still scrollable) */
+.callerScroll,
+.no_taskScrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.callerScroll::-webkit-scrollbar,
+.no_taskScrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.messageScrollBar {
+  scrollbar-width: none;
+}
+
+.messageScrollBar:hover {
+  scrollbar-width: thin;
+}
+
+.commonInput:not(:placeholder-shown):focus:invalid {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--danger) 25%, transparent);
+  border-color: var(--danger);
+}
+
+/* Native controls follow the theme (color-scheme is set on :root / .dark). */
+input[type='date'],
+input[type='time'],
+input[type='datetime-local'],
+input[type='month'],
+select {
+  color-scheme: inherit;
+}
+
+.dark input[type='date']::-webkit-calendar-picker-indicator,
+.dark input[type='time']::-webkit-calendar-picker-indicator,
+.dark input[type='datetime-local']::-webkit-calendar-picker-indicator {
+  filter: invert(0.85);
+  cursor: pointer;
+}
+
+select option,
+select optgroup {
+  background-color: var(--raised);
+  color: var(--text);
+}
+
+input[type='checkbox'],
+input[type='radio'],
+input[type='range'],
+progress {
+  accent-color: var(--brand-solid);
+}
+
+/* Disabled controls */
+:disabled,
+[aria-disabled='true'] {
+  cursor: not-allowed;
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  color: var(--text-muted);
+  background-color: var(--panel);
+  opacity: 0.8;
+}
+
+/* Inline code and code blocks outside the syntax highlighter */
+:not(pre) > code {
+  padding: 0.1em 0.35em;
+  border-radius: 0.375rem;
+  background: var(--code-bg);
+  color: var(--code-fg);
+  font-size: 0.9em;
+}
+
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  background: var(--code-bg);
+  color: var(--code-fg);
+  font-size: 0.875rem;
+}
+
+pre code {
+  padding: 0;
+  background: transparent;
+  color: inherit;
+}
+
+/* Smooth theme change: html.theme-anim is added only while switching (never on first paint). */
+html.theme-anim,
+html.theme-anim *,
+html.theme-anim *::before,
+html.theme-anim *::after {
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease, fill 150ms ease, stroke 150ms ease, box-shadow 150ms ease !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.theme-anim,
+  html.theme-anim *,
+  html.theme-anim *::before,
+  html.theme-anim *::after {
+    transition: none !important;
+  }
+}
+
+/* Toasts (react-toastify) follow the theme and sit on top of everything. */
+.Toastify__toast-container {
+  z-index: var(--z-toast);
+  max-width: 100%;
+}
+
+.Toastify__toast {
+  --toastify-color-progress-light: var(--brand-solid);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-elevated);
+  background: var(--raised);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.Toastify__toast-icon {
+  width: 1.25rem;
+}
+
+.Toastify__toast--success .Toastify__toast-icon { --toastify-icon-color-success: var(--success); }
+.Toastify__toast--error .Toastify__toast-icon { --toastify-icon-color-error: var(--danger); }
+.Toastify__toast--warning .Toastify__toast-icon { --toastify-icon-color-warning: var(--warning); }
+.Toastify__toast--info .Toastify__toast-icon { --toastify-icon-color-info: var(--info); }
+
+@media (max-width: 480px) {
+  .Toastify__toast-container {
+    left: 0.5rem !important;
+    right: 0.5rem !important;
+    width: auto !important;
+    top: calc(0.5rem + env(safe-area-inset-top)) !important;
+    padding: 0 !important;
+  }
+
+  .Toastify__toast {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.Toastify__close-button {
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+.Toastify__close-button:hover {
+  opacity: 1;
+}
+
+/* Quill (react-quill-new): toolbar, editor, pickers and tooltips for both themes. */
+html .ql-toolbar.ql-snow {
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-control) var(--radius-control) 0 0;
+  background: var(--panel);
+  font-family: var(--font-sans);
+}
+
+html .ql-container.ql-snow {
+  border: 1px solid var(--border-strong);
+  border-top: 0;
+  border-radius: 0 0 var(--radius-control) var(--radius-control);
+  background: var(--card);
+  color: var(--text);
+  font-family: var(--font-sans);
+}
+
+html .ql-editor {
+  color: var(--text);
+}
+
+html .ql-editor.ql-blank::before {
+  color: var(--text-muted);
+  font-style: normal;
+}
+
+html .ql-editor a {
+  color: var(--brand);
+}
+
+html .ql-snow .ql-stroke {
+  stroke: var(--text-muted);
+}
+
+html .ql-snow .ql-fill,
+html .ql-snow .ql-stroke.ql-fill {
+  fill: var(--text-muted);
+}
+
+html .ql-snow .ql-picker {
+  color: var(--text-muted);
+}
+
+html .ql-snow.ql-toolbar button:hover,
+html .ql-snow.ql-toolbar button:focus,
+html .ql-snow.ql-toolbar button.ql-active,
+html .ql-snow.ql-toolbar .ql-picker-label:hover,
+html .ql-snow.ql-toolbar .ql-picker-label.ql-active,
+html .ql-snow.ql-toolbar .ql-picker-item:hover,
+html .ql-snow.ql-toolbar .ql-picker-item.ql-selected {
+  color: var(--brand);
+}
+
+html .ql-snow.ql-toolbar button:hover .ql-stroke,
+html .ql-snow.ql-toolbar button:focus .ql-stroke,
+html .ql-snow.ql-toolbar button.ql-active .ql-stroke,
+html .ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke,
+html .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke,
+html .ql-snow.ql-toolbar .ql-picker-item:hover .ql-stroke,
+html .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke {
+  stroke: var(--brand);
+}
+
+html .ql-snow.ql-toolbar button:hover .ql-fill,
+html .ql-snow.ql-toolbar button:focus .ql-fill,
+html .ql-snow.ql-toolbar button.ql-active .ql-fill,
+html .ql-snow.ql-toolbar .ql-picker-label:hover .ql-fill,
+html .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-fill {
+  fill: var(--brand);
+}
+
+html .ql-snow .ql-picker-options,
+html .ql-snow .ql-tooltip {
+  background: var(--raised);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  box-shadow: var(--shadow-pop);
+}
+
+html .ql-snow .ql-tooltip input[type='text'] {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+  border-radius: 0.375rem;
+}
+
+html .ql-snow .ql-tooltip a.ql-action::after,
+html .ql-snow .ql-tooltip a.ql-remove::before,
+html .ql-snow .ql-tooltip a {
+  color: var(--brand);
+}
+
+html .ql-snow .ql-picker.ql-expanded .ql-picker-label {
+  border-color: var(--border);
+}
+
+html .ql-snow a {
+  color: var(--brand);
+}
+
+html .ql-editor pre.ql-syntax {
+  background: var(--code-bg);
+  color: var(--code-fg);
+}
+
+/**
+ * ==============================================
+ * Dot Pulse
+ * ==============================================
+ */
+.dot-pulse {
+  left: -9999px;
+  box-shadow: 9999px 0 0 -5px;
+  animation: dot-pulse 1.5s infinite linear;
+  animation-delay: 0.25s;
+}
+
+.dot-pulse::before,
+.dot-pulse::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: var(--brand);
+  color: var(--brand);
+}
+
+.dot-pulse::before {
+  box-shadow: 9984px 0 0 -5px;
+  animation: dot-pulse-before 1.5s infinite linear;
+  animation-delay: 0s;
+}
+
+.dot-pulse::after {
+  box-shadow: 10014px 0 0 -5px;
+  animation: dot-pulse-after 1.5s infinite linear;
+  animation-delay: 0.5s;
+}
+
+@keyframes dot-pulse-before {
+  0% {
+    box-shadow: 9984px 0 0 -5px;
+  }
+
+  30% {
+    box-shadow: 9984px 0 0 2px;
+  }
+
+  60%,
+  100% {
+    box-shadow: 9984px 0 0 -5px;
+  }
+}
+
+@keyframes dot-pulse {
+  0% {
+    box-shadow: 9999px 0 0 -5px;
+  }
+
+  30% {
+    box-shadow: 9999px 0 0 2px;
+  }
+
+  60%,
+  100% {
+    box-shadow: 9999px 0 0 -5px;
+  }
+}
+
+@keyframes dot-pulse-after {
+  0% {
+    box-shadow: 10014px 0 0 -5px;
+  }
+
+  30% {
+    box-shadow: 10014px 0 0 2px;
+  }
+
+  60%,
+  100% {
+    box-shadow: 10014px 0 0 -5px;
+  }
+}

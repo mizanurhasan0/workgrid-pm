@@ -1,0 +1,60 @@
+{
+  "name": "workgrid-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Workgrid web client: project management, chat and video calls",
+  "scripts": {
+    "dev": "vite --mode dev",
+    "start": "vite --mode dev",
+    "build": "vite build --mode prod",
+    "build-prod": "vite build --mode prod && node scripts/copy-to-backend.mjs",
+    "build-dev": "vite build --mode dev && node serve.js",
+    "preview": "vite preview",
+    "serve": "node serve.js",
+    "lint": "eslint --ext .js,.jsx .",
+    "lint:fix": "eslint --fix --ext .js,.jsx .",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.3.0",
+    "@reduxjs/toolkit": "^2.15.0",
+    "axios": "^1.21.1",
+    "lucide-react": "^1.77.0",
+    "peerjs": "^1.5.5",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-hook-form": "^7.92.0",
+    "react-markdown": "^10.1.0",
+    "react-quill-new": "^3.8.3",
+    "react-redux": "^9.3.1",
+    "react-router-dom": "^7.18.6",
+    "react-select": "^5.10.2",
+    "react-syntax-highlighter": "^16.1.2",
+    "react-toastify": "^11.2.0",
+    "rehype-raw": "^7.0.0",
+    "remark-gfm": "^4.0.1",
+    "socket.io-client": "^4.8.4"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@tailwindcss/vite": "^4.3.5",
+    "@testing-library/jest-dom": "^8.0.0",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.13",
+    "@vitejs/plugin-react": "^6.3.0",
+    "eslint": "^9.39.4",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.14.0",
+    "jsdom": "^31.0.1",
+    "tailwindcss": "^4.3.5",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.1"
+  },
+  "engines": {
+    "node": ">=22.22.2"
+  }
+}

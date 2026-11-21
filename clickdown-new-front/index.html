@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" />
+    <style>html{background:#fff}html.dark{background:#0b1020}</style>
+    <script>
+      // Set the theme before first paint to avoid a flash. Keep in sync with src/Components/Theme/theme.js.
+      (function () {
+        try {
+          var stored = null;
+          try { stored = localStorage.getItem('themeMode'); } catch (e) { /* storage blocked */ }
+          var dark = stored === 'dark'; // light is the default
+          var root = document.documentElement;
+          root.classList.toggle('dark', dark);
+          root.style.colorScheme = dark ? 'dark' : 'light';
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) { meta.setAttribute('content', dark ? '#0b1020' : '#ffffff'); }
+        } catch (e) { /* ignore */ }
+      })();
+    </script>
+    <meta name="description" content="Workgrid: projects, tasks, chat and video calls in one place." />
+    <link rel="icon" href="/navlogo.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/navlogo.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>Workgrid</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run Workgrid.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/index.jsx"></script>
+  </body>
+</html>

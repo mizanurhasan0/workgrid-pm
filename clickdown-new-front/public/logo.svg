@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="83" viewBox="0 0 400 83" role="img" aria-label="Workgrid">
+  <rect x="2" y="8" width="66" height="66" rx="16" fill="#6239ED"/>
+  <path d="M20 41l13 13 27-27" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="84" y="56" font-family="Inter, Arial, sans-serif" font-size="40" font-weight="700" fill="#0F172A">Workgrid</text>
+</svg>

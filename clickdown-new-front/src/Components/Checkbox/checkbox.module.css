@@ -1,0 +1,85 @@
+.container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* 24px hit area around the 16px box; larger on touch devices */
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+    cursor: pointer;
+}
+
+@media (pointer: coarse) {
+    .container {
+        min-width: 2.75rem;
+        min-height: 2.75rem;
+    }
+}
+
+.container input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Custom checkbox box */
+.checkmark {
+    position: relative;
+    height: 1rem;
+    width: 1rem;
+    flex: none;
+    background-color: var(--surface);
+    transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+    border-radius: 0.25rem;
+    border: 1.5px solid var(--border-strong);
+}
+
+.container:hover .checkmark {
+    border-color: var(--brand);
+}
+
+.container input:focus-visible ~ .checkmark {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+.container input:disabled ~ .checkmark {
+    opacity: 0.5;
+}
+
+.container input:disabled {
+    cursor: not-allowed;
+}
+
+.container input:checked ~ .checkmark {
+    background-color: var(--brand-solid);
+    border-color: var(--brand-solid);
+    animation: pop 0.25s;
+}
+
+.checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 0.3125rem;
+    top: 0.0625rem;
+    width: 0.3125rem;
+    height: 0.625rem;
+    border: solid var(--on-brand);
+    border-width: 0 0.125rem 0.125rem 0;
+    transform: rotate(45deg);
+}
+
+.container input:checked ~ .checkmark::after {
+    display: block;
+}
+
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}

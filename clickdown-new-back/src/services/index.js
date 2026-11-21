@@ -1,0 +1,32 @@
+import demo from './demo/demo';
+import role from './role/role';
+import project from './project/project';
+import user from './user/user';
+import sprint from './sprint/sprint';
+import task, { taskSocket } from './task/task';
+import image from './image/image';
+import cf from './customfield/customfield';
+import { chat, chatSocket } from './chat/chat';
+import { message, messageSocket } from './message/message';
+import invitations from './invitations/invitations';
+import { attach } from './attachments/attach';
+import notification from './notifications/notify';
+
+export const services = (app) => {
+  app.configure(project);
+  app.configure(sprint);
+  app.configure(role);
+  app.configure(task);
+  app.configure(user);
+  app.configure(demo);
+  app.configure(image);
+  app.configure(chat);
+  app.configure(invitations);
+  app.configure(cf);
+  app.configure(attach);
+  app.configure(message);
+  app.configure(notification);
+  chatSocket(app);
+  taskSocket(app);
+  messageSocket(app);
+};

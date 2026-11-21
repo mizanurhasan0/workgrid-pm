@@ -1,0 +1,1282 @@
+{
+  "info": {
+    "_postman_id": "dc6b0a5c-8ed1-4b60-9d11-0217e430f0d7",
+    "name": "Workgrid",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "23886826"
+  },
+  "item": [
+    {
+      "name": "Projects",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\":\"Project2\",\n    \"sprintLength\":\"7\",\n    \"members\":[\n        \"64101bd3fc5899dff78a76e5\",\n        \"64101ba5fc5899dff78a76e0\",\n        \"641042545c2d7061eca7317f\",\n        \"6410483808cf25946b2519a8\",\n        \"64104a9108cf25946b2519f5\"\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/project",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "project"
+              ]
+            },
+            "description": "This route is to create projects. It also create chat for the project. The chat inherits members and chat name from the project. If something went wrong in the code it will give you 500 status code with \"something went wrong\" message."
+          },
+          "response": []
+        },
+        {
+          "name": "Get",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/project",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "project"
+              ]
+            },
+            "description": "This route is get all projects."
+          },
+          "response": []
+        },
+        {
+          "name": "Get one",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/project/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "project",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6402f0eff650f3e42e53adb9"
+                }
+              ]
+            },
+            "description": "This route is to get single project with id."
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"customFields\":[{\"cf\":\"641191fa138d6cf0c7f7778f\",\"show\":false},{\"cf\":\"6411929b0dacbc5c01a4ebf8\"}]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/project/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "project",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "64119ec56999d278e497ade2"
+                }
+              ]
+            },
+            "description": "This route is for updating a project with id. If project not found with that id it will give 404 status code. If something went wrong in the code it will give you 500 status code.  \nIt also update chat with project name and project members field."
+          },
+          "response": []
+        },
+        {
+          "name": "Remove",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/project/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "project",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "64119d9096dd5814bb04f071"
+                }
+              ]
+            },
+            "description": "This route is for removing project with id. If project not found with id it will give you 404 status code. If something went wrong in the code then it will give you 500 status code."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Sprint",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"project\":\"6405b2aac5b741b6191e57d7\",\n    \"endDate\":\"2023-03-04T09:46:09.872Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/sprint",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "sprint"
+              ]
+            },
+            "description": "This route is to create sprint. It needs project id for creating sprint otherwise it will give 400 bad request .If something went wrong in the code it will give you 500 status code with \"something went wrong\" message."
+          },
+          "response": []
+        },
+        {
+          "name": "Get",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/sprint",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "sprint"
+              ]
+            },
+            "description": "This route is get all sprints."
+          },
+          "response": []
+        },
+        {
+          "name": "Get one",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/sprint/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "sprint",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6405b2bac5b741b6191e57df"
+                }
+              ]
+            },
+            "description": "This route is to get single sprint with id."
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"project\":\"6405b2aac5b741b6191e57d7\",\n    \"tasksArr\":{\n        \"add\":[\"6405944f59ad32d6d518ecb3\"],\n        \"remove\":[]\n    },\n    \"status\":\"done\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/sprint/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "sprint",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6405b2bac5b741b6191e57df"
+                }
+              ]
+            },
+            "description": "This endpoint is used for update sprint. It expect project id in the body otherwise it will give 400 bad request. If something went wrong in the code it will give you 500 status code."
+          },
+          "response": []
+        },
+        {
+          "name": "Remove",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"project\":\"6402f0eff650f3e42e53adb9\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/sprint/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "sprint",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "64031d05baf5f7281efafba1"
+                }
+              ]
+            },
+            "description": "This route is for removing sprints with id. If sprint not found with id it will give you 404 status code. If something went wrong in the code then it will give you 500 status code."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "role",
+      "item": [
+        {
+          "name": "getAll",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/role",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "role"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getOne",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/role/64019ccf0c8592eb69087530",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "role",
+                "64019ccf0c8592eb69087530"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\":\"member 1\",\n    \"department\":\"development\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/role",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "role"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"department\":\"department\",\n    \"name\":\"role name\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/role/64019ccf0c8592eb69087530",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "role",
+                "64019ccf0c8592eb69087530"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/role/64019ccf0c8592eb69087530",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "role",
+                "64019ccf0c8592eb69087530"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\":\"admin\",\n    \"email\":\"admin@admin.com\",\n    \"password\":\"adminadmin\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/user",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.status === 'OK') {",
+                  "    // let token = pm.response.json().token;",
+                  "    let token=pm.response.headers.get('Set-Cookie').split(\";\")[0].split(\"=\")[1];",
+                  "    pm.collectionVariables.set(\"workgridToken\", token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\":\"{{email}}\",\n    \"password\":\"{{password}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/user/login",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "user",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "me",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{workgridToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/user/me",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "user",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "logout",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{workgridToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/user/logout",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "user",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{workgridToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/user?page=1&limit=10&name=samian",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "user"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "name",
+                  "value": "samian"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "user profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{workgridToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/user/profile/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "user",
+                "profile",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "640316a03ceff9edb50a6bf9",
+                  "description": "640301158ad1bb9c5a0156d5"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update own",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{workgridToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "avatar",
+                  "type": "file",
+                  "src": "/home/jayeen/Downloads/images/876035eb6fc983d1997c687bfe35b2f3.png"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{url}}/user/me",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "user",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update user",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{workgridToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n   \n    \"password\":\"password\",\n    \"notifySubs\":\"jjj\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/user/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "user",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "640302e72a2621fe1e801e45",
+                  "description": "640301158ad1bb9c5a0156d5"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete user",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{workgridToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/user/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "user",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "640301158ad1bb9c5a0156d5",
+                  "description": "640301158ad1bb9c5a0156d5"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Task",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"project\":\"64119ec56999d278e497ade2\",\n    \"name\":\"New Task\",\n    \"points\":10\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/task",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "task"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Tasks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/task",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "task"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Task",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/task/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "task",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "64059326551f3954e7f25956"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"customFields\":[{\"cf\":\"641191fa138d6cf0c7f7778f\",\"value\":\"nai\"},{\"cf\":\"6411929b0dacbc5c01a4ebf8\",\"value\":\"nai\"}]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/task/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "task",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6411a540f5fc79328ecd2b80"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/task/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "task",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6405944f59ad32d6d518ecb3"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Custom field",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\":\"first custom field\",\n    \"type\":\"dropdown\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/cf",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "cf"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/cf",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "cf"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get one",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/cf/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "cf",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "641191fa138d6cf0c7f7778f"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"value\":[{\n        \"value\":\"progress\",\n        \"color\":\"red\"\n    }]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/cf/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "cf",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "641191fa138d6cf0c7f7778f"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/cf/:id",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "cf",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6411929b0dacbc5c01a4ebf8"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Message reactions",
+      "item": [
+        {
+          "name": "Add reaction",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/message/:id/reaction",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "message",
+                ":id",
+                "reaction"
+              ]
+            },
+            "description": "Adds the current user's reaction to a message of a chat they belong to. Idempotent. Returns { id, chat, reactions }.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"emoji\": \"👍\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove reaction",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/message/:id/reaction?emoji=%F0%9F%91%8D",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "message",
+                ":id",
+                "reaction"
+              ],
+              "query": [
+                {
+                  "key": "emoji",
+                  "value": "%F0%9F%91%8D"
+                }
+              ]
+            },
+            "description": "Removes the current user's reaction. Idempotent. Returns { id, chat, reactions }."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Notifications",
+      "item": [
+        {
+          "name": "List (with read/archived flags)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/task/notify/:userId?archived=false",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "task",
+                "notify",
+                ":userId"
+              ],
+              "query": [
+                {
+                  "key": "archived",
+                  "value": "false"
+                }
+              ]
+            },
+            "description": "Own notifications only. Every item has read and archived for the current user."
+          },
+          "response": []
+        },
+        {
+          "name": "Unread count",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/notification/unread-count",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "notification",
+                "unread-count"
+              ]
+            },
+            "description": "Returns { count }."
+          },
+          "response": []
+        },
+        {
+          "name": "Mark read / unread",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/notification/:id/read",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "notification",
+                ":id",
+                "read"
+              ]
+            },
+            "description": "Returns { id, read, archived }.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"read\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Mark all read",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/notification/read-all",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "notification",
+                "read-all"
+              ]
+            },
+            "description": "Returns { updated }.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Archive",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/notification/:id/archive",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "notification",
+                ":id",
+                "archive"
+              ]
+            },
+            "description": "Archives and marks as read.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Restore",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/notification/:id/restore",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "notification",
+                ":id",
+                "restore"
+              ]
+            },
+            "description": "Restores an archived notification.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Import local flags",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{url}}/notification/import",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "notification",
+                "import"
+              ]
+            },
+            "description": "One-time import of flags kept in a browser's localStorage.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"read\": [\n        \"<notification id>\"\n    ],\n    \"archived\": [\n        \"<notification id>\"\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{workgridToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "url",
+      "value": "http://localhost:4000",
+      "type": "string"
+    },
+    {
+      "key": "workgridToken",
+      "value": ""
+    }
+  ]
+}

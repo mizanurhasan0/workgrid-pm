@@ -1,0 +1,92 @@
+.ql-container {
+  min-height: 10rem;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.875rem;
+}
+
+.ql-editor {
+  height: 100%;
+  flex: 1;
+  overflow-y: auto;
+  width: 100%;
+}
+
+/* Toolbar wraps onto several lines on narrow screens and keeps comfortable targets */
+.quill .ql-toolbar.ql-snow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.125rem 0.25rem;
+}
+
+.quill .ql-toolbar.ql-snow .ql-formats {
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin-right: 0.5rem;
+}
+
+.quill .ql-toolbar.ql-snow button {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+/* Theme: toolbar and editor follow the semantic surface tokens in both themes */
+.quill .ql-toolbar.ql-snow,
+.quill .ql-container.ql-snow {
+  border-color: var(--border);
+}
+
+.quill .ql-toolbar.ql-snow {
+  background: var(--surface-alt);
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.quill .ql-container.ql-snow {
+  background: var(--surface);
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.quill .ql-editor {
+  color: var(--text);
+}
+
+.quill .ql-editor.ql-blank::before {
+  color: var(--text-muted);
+  font-style: normal;
+}
+
+:where(.dark) .quill .ql-snow .ql-stroke {
+  stroke: var(--text-muted);
+}
+
+:where(.dark) .quill .ql-snow .ql-fill {
+  fill: var(--text-muted);
+}
+
+:where(.dark) .quill .ql-snow .ql-picker {
+  color: var(--text-muted);
+}
+
+:where(.dark) .quill .ql-snow .ql-picker-options {
+  background: var(--surface-raised);
+  border-color: var(--border);
+}
+
+:where(.dark) .quill .ql-snow.ql-toolbar button:hover .ql-stroke,
+:where(.dark) .quill .ql-snow.ql-toolbar button.ql-active .ql-stroke,
+:where(.dark) .quill .ql-snow .ql-picker-label:hover .ql-stroke {
+  stroke: var(--brand);
+}
+
+:where(.dark) .quill .ql-snow.ql-toolbar button:hover .ql-fill,
+:where(.dark) .quill .ql-snow.ql-toolbar button.ql-active .ql-fill {
+  fill: var(--brand);
+}
+
+.quill .ql-toolbar.ql-snow button:focus-visible,
+.quill .ql-toolbar.ql-snow .ql-picker-label:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: -2px;
+}

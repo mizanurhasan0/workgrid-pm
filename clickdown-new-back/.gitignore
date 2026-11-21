@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Secrets and local configuration (never commit these)
+.env
+.env.*
+!.env.example
+config/*.env
+ssl/
+info.txt
+
+# Runtime / generated data
+images/*
+!images/avatar.svg
+!images/project.svg
+!images/workgrid-logo.png
+search/*.msp
+temp/
+git.properties
+client/
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pids
+*.pid
+*.seed
+*.pid.lock
+coverage/
+.nyc_output/
+.eslintcache
+.npm
+.node_repl_history
+*.tgz
+.cache/
+.DS_Store
